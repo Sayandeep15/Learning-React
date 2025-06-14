@@ -18,7 +18,7 @@ function App() {
   )
 
   //FILTER FUNCTION
-  const handleDisplay=()=>{
+  const handleDisplay=async ()=>{
     const findPeople = people.filter(person =>
       person.profession=== input
     )
@@ -45,6 +45,7 @@ function App() {
         <div className="container ">
           <input type="text" name="inp" value={input} id="" onChange={(e)=>setinput(e.target.value)} className='bg-white text-black'/>
           <button className='bg-blue-500 rounded-md px-2 m-2' onClick={handleDisplay}>Display</button>
+          
         </div>
       </article>
     </>
