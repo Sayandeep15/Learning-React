@@ -1,12 +1,25 @@
-# React + Vite
+# UseRef Hook
+useRef is a React hook that allows you to persist values across renders without causing re-renders when the value changes. It is also used to access DOM elements directly.
+#⚙️ How it works:
+useRef(initialValue) returns an object: { current: initialValue }.
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+This object remains constant throughout the component's lifecycle.
 
-Currently, two official plugins are available:
+Updating ref.current does not trigger a re-render.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+#🧠 Use cases:
+Accessing DOM nodes (e.g., focusing an input).
 
-## Expanding the ESLint configuration
+Holding mutable variables like timers or previous state values.
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+Avoiding re-renders when storing a value that doesn't affect the UI.
+
+#Syntax:
+const inputRef = useRef(null);
+
+useEffect(() => {
+  inputRef.current.focus(); // DOM access
+}, []);
+
+return <input ref={inputRef} />;
+
