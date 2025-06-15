@@ -1,12 +1,16 @@
-# React + Vite
+# React Routing
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+react-router-dom is the standard routing library for React on the web, allowing you to navigate between pages (components) without reloading the page.
+# Installation:
+npm i react-router-dom
 
-Currently, two official plugins are available:
+# ✅ React Router DOM Setup (with createBrowserRouter)
+1. import {createBrowserRouter, RouterProvider, NavLink} from "react-router-dom";
+2. const router = createBrowserRouter([
+  { path: "/", element: <Home /> },
+  { path: "/about", element: <About /> },
+  { path: "/contact", element: <Contact /> },
+]);
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
-
-## Expanding the ESLint configuration
-
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+3. Render the router in your App.js: <b> < RouterProvider router={router} /></b>
+4. Use Link/NavLink tags insteed of < a> tag
