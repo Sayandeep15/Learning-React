@@ -1,0 +1,15 @@
+REACT ROUTER:
+1. npm i 'react-router-dom'
+2. import {createBrowserRouter, RouterProvider} from 'react-router-dom'
+3. Syntax--> const router= createBrowserRouter([
+    {path: "/"
+    element: component name},
+    {path: "/login"
+    element: component name}
+])
+
+in return statement use- < RouterProvider router={router}/>
+
+4. use <link>/ <navLink> insteed of <a> tag. Both have to import from 'react-router-dom'
+5. Import {useParams} from 'react-router-dom'
+6. const param= useParams() and now use as {params.username, params.id etc}
