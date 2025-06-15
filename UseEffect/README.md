@@ -1,12 +1,30 @@
-# React + Vite
+# UseEffect Hook
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+useEffect is a hook that lets you run side effects in your function components. These effects can include data fetching, subscriptions, or manually modifying the DOM.
 
-Currently, two official plugins are available:
+# ⚙️ How it works:
+useEffect(callback, dependencies) runs the callback after the component renders.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+If you pass a dependency array [], it runs once (on mount).
 
-## Expanding the ESLint configuration
+If dependencies are listed, it re-runs when any of them change.
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+You can return a function from the effect to handle cleanup (like removing listeners or timers).
+
+# 🧠 Use cases:
+Fetching data from APIs
+
+Adding/removing event listeners
+
+Syncing state with localStorage
+
+Handling component lifecycle logic
+
+#  Example:
+useEffect(() => {
+  console.log("Component mounted");
+
+  return () => {
+    console.log("Component will unmount");
+  };
+}, []);
