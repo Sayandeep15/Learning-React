@@ -14,3 +14,4 @@ npm i react-router-dom
 
 3. Render the router in your App.js: <b> < RouterProvider router={router} /></b>
 4. Use Link/NavLink tags insteed of < a> tag
+
