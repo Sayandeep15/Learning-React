@@ -18,6 +18,46 @@
   filter: drop-shadow(0 0 2em #61dafbaa);
 }
 
+.error{
+  color: red;
+  font-size: 12px;
+}
+
+.card{
+  color: white;
+}
+.card h1{
+  font-size:36px;
+  font-family: Segoe UI, Roboto, Oxygen, Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif
+}
+form{
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  
+}
+input{
+  background-color: transparent;
+  border: 2px solid #ec5990;
+  border-radius: 5px;
+  width: 400px;
+  height: 30px;
+  padding: 10px;
+  margin: auto;
+}
+input:focus{
+  border: 2px solid #bf1650;
+}
+input[type="submit"] {
+  background-color: #ec5990;
+  color: white;
+  border: none;
+  
+  cursor: pointer;
+  width: 96px;
+  text-align: center;
+}
+
 @keyframes logo-spin {
   from {
     transform: rotate(0deg);

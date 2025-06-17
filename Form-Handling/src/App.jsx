@@ -1,32 +1,59 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import { useState } from "react";
+import "./App.css";
+import { useForm } from "react-hook-form";
 
 function App() {
-  const [count, setCount] = useState(0)
+  const [count, setCount] = useState(0);
+
+  //Form dependencies
+  const {
+    register,
+    handleSubmit,
+    watch,
+    formState: { errors, isSubmiting },
+  } = useForm();
+
+  const onSubmit = (data) => console.log(data);
 
   return (
     <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
       <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
+        <h1>Form</h1>
+        {isSubmiting && <div>Loading...</div>}
+        <form onSubmit={handleSubmit(onSubmit)}>
+          <input
+            placeholder="Username"
+            {...register("username", {
+              required: { value: true, message: "This field is required" },
+              minLength: { value: 3, message: "Min length is 3" },
+              maxLength: { value: 16, message: "Min length is 16" },
+            })}
+            type="text"
+          />
+          {/* Display errors */}
+          {errors.username && (
+            <div className="error">{errors.username.message}</div>
+          )}
+
+          <input
+            placeholder="Password"
+            {...register("password", {
+              required: { value: true, message: "This field is required" },
+              minLength: { value: 3, message: "Min length is 3" },
+              maxLength: { value: 8, message: "Min length is 8" },
+            })}
+            type="password"
+          />
+          {/* Display errors */}
+          {errors.password && (
+            <div className="error">{errors.password.message}</div>
+          )}
+
+          <input disabled={isSubmiting} type="submit" />
+        </form>
       </div>
     </>
-  )
+  );
 }
 
-export default App
+export default App;
