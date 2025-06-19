@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import "./App.css";
 import Nav from "./Component/Nav";
 import { v4 as uuidv4 } from "uuid";
@@ -16,47 +16,53 @@ function App() {
   const [todo, setTodo] = useState("");
   const [todos, setTodos] = useState([]);
 
+  useEffect(() => {
+    let todoString = localStorage.getItem("todos");
+    if (todoString) {
+      let todos = JSON.parse(localStorage.getItem("todos"));
+      setTodos(todos);
+    }
+  }, []);
 
-
-
-  // ADD FUNCTION
-  const handleAdd = () => {
-    setTodos([...todos, { id: uuidv4(), todo, isCompleted: false }]);
-    setTodo("");
-  };
-  // INPUT HANDLE CHANGE FUNCTION
-  const handleChange = (e) => {
-    setTodo(e.target.value);
+  const saveTodos = () => {
+    localStorage.setItem("todos", JSON.stringify(todos));
   };
 
   //EDIT FUNCTION
-  const handleEdit=(e, id) => {
-    let renametodo= todos.filter(i=> i.id===id)
-    setTodo(renametodo[0].todo)
+  const handleEdit = (e, id) => {
+    let renametodo = todos.filter((i) => i.id === id);
+    setTodo(renametodo[0].todo);
 
-     let newTodos = todos.filter((item) => {
+    let newTodos = todos.filter((item) => {
       return item.id != id;
     });
     setTodos(newTodos);
-    
-  }
-  
+    saveTodos();
+  };
+
   //DELETE FUNCTION
   const handleDlt = (e, id) => {
-    const confirmDelete = window.confirm(
-      "Are you sure you want to delete?"
-    );
+    const confirmDelete = window.confirm("Are you sure you want to delete?");
     if (!confirmDelete) return; // user clicked "Cancel"
 
     let newTodos = todos.filter((item) => {
       return item.id != id;
     });
     setTodos(newTodos);
-   
-};
+    saveTodos();
+  };
 
+  // ADD FUNCTION
+  const handleAdd = () => {
+    setTodos([...todos, { id: uuidv4(), todo, isCompleted: false }]);
+    setTodo("");
+    saveTodos();
+  };
+  // INPUT HANDLE CHANGE FUNCTION
+  const handleChange = (e) => {
+    setTodo(e.target.value);
+  };
 
-  
   //CHECKBOX FUNCTION
   const handleCheck = (e) => {
     let id = e.target.name;
@@ -66,6 +72,7 @@ function App() {
     let newTodos = [...todos];
     newTodos[index].isCompleted = !newTodos[index].isCompleted;
     setTodos(newTodos);
+    saveTodos();
   };
 
   return (
@@ -129,9 +136,12 @@ function App() {
                     {item.todo}
                   </p>
                   <div className="flex gap-2">
-                    <button onClick={(e) => {
+                    <button
+                      onClick={(e) => {
                         handleEdit(e, item.id);
-                      }} className="bg-[#313035] py-1.5 px-4 rounded-xl hover:scale-105 hover:bg-[#2D2C30] transition-all ease">
+                      }}
+                      className="bg-[#313035] py-1.5 px-4 rounded-xl hover:scale-105 hover:bg-[#2D2C30] transition-all ease"
+                    >
                       Edit
                     </button>
                     <button
@@ -146,8 +156,7 @@ function App() {
                 </div>
               );
             })}
-          </div>             
-
+          </div>
         </div>
       </div>
     </>
