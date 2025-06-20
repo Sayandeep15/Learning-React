@@ -15,6 +15,7 @@ import { v4 as uuidv4 } from "uuid";
 function App() {
   const [todo, setTodo] = useState("");
   const [todos, setTodos] = useState([]);
+  const [showFinished, setshowFinished] = useState(true);
 
   useEffect(() => {
     let todoString = localStorage.getItem("todos");
@@ -23,9 +24,14 @@ function App() {
       setTodos(todos);
     }
   }, []);
-
+  //SAVE TODOS IN LOCAL STORAGE
   const saveTodos = (params) => {
     localStorage.setItem("todos", JSON.stringify(todos));
+  };
+
+  //TOGGLE SHOW FINISH BUTTON
+  const toggleFinished = (e) => {
+    setshowFinished(!showFinished);
   };
 
   //EDIT FUNCTION
@@ -113,6 +119,20 @@ function App() {
             </button>
           </div>
 
+          {/* SHOW FINISHED CHECKBOX */}
+          <div className=" w-full flex items-center">
+            <input
+              className="my-4  "
+              id="show"
+              onChange={toggleFinished}
+              type="checkbox"
+              checked={showFinished}
+            />
+            <label className="mx-2 text-xs text-blue-500" htmlFor="show">
+              Show Finished
+            </label>
+          </div>
+
           {/* show todos */}
 
           <div className="todolist  text-white w-full">
@@ -121,39 +141,41 @@ function App() {
             )}
             {todos.map((item) => {
               return (
-                <div
-                  key={item.id}
-                  className="todo flex items-center w-full justify-between mb-2"
-                >
-                  {/* CHECK BOX */}
-                  <input
-                    type="checkbox"
-                    name={item.id}
-                    onChange={handleCheck}
-                    checked={item.isCompleted}
-                  />
-                  <p className={item.isCompleted ? "line-through" : ""}>
-                    {item.todo}
-                  </p>
-                  <div className="flex gap-2">
-                    <button
-                      onClick={(e) => {
-                        handleEdit(e, item.id);
-                      }}
-                      className="bg-[#313035] py-1.5 px-4 rounded-xl hover:scale-105 hover:bg-[#2D2C30] transition-all ease"
-                    >
-                      Edit
-                    </button>
-                    <button
-                      onClick={(e) => {
-                        handleDlt(e, item.id);
-                      }}
-                      className="bg-[#313035] py-1.5 px-4 rounded-xl hover:scale-105 hover:bg-[#2D2C30] transition-all ease"
-                    >
-                      Delete
-                    </button>
+                (showFinished || !item.isCompleted) && (
+                  <div
+                    key={item.id}
+                    className="todo flex items-center w-full justify-between mb-2"
+                  >
+                    {/* CHECK BOX */}
+                    <input
+                      type="checkbox"
+                      name={item.id}
+                      onChange={handleCheck}
+                      checked={item.isCompleted}
+                    />
+                    <p className={item.isCompleted ? "line-through" : ""}>
+                      {item.todo}
+                    </p>
+                    <div className="flex gap-2">
+                      <button
+                        onClick={(e) => {
+                          handleEdit(e, item.id);
+                        }}
+                        className="bg-[#313035] py-1.5 px-4 rounded-xl hover:scale-105 hover:bg-[#2D2C30] transition-all ease"
+                      >
+                        Edit
+                      </button>
+                      <button
+                        onClick={(e) => {
+                          handleDlt(e, item.id);
+                        }}
+                        className="bg-[#313035] py-1.5 px-4 rounded-xl hover:scale-105 hover:bg-[#2D2C30] transition-all ease"
+                      >
+                        Delete
+                      </button>
+                    </div>
                   </div>
-                </div>
+                )
               );
             })}
           </div>
