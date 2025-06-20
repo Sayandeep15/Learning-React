@@ -85,27 +85,17 @@ function App() {
 
   return (
     <>
+     <Nav />
       <div
-        className="w-full  h-screen"
-        style={{
-          background: `linear-gradient(
-          rgb(5, 5, 10) 0%, rgb(10, 9, 14) 8.333%, rgb(14, 13, 18) 16.667%,
-          rgb(19, 18, 22) 25%, rgb(23, 22, 26) 33.333%, rgb(27, 26, 30) 41.667%,
-          rgb(31, 30, 34) 50%, rgb(35, 34, 38) 58.333%, rgb(39, 38, 42) 66.667%,
-          rgb(42, 41, 45) 75%, rgb(45, 44, 48) 83.333%, rgb(47, 46, 51) 91.667%,
-          rgb(49, 48, 53) 100%)`,
-          height: "100vh",
-          color: "#fff",
-        }}
-      >
-        <Nav />
+        className="w-full mt-12 mb-12 text-white">
+       
 
-        <div className="container bg-[#131216] px-10 py-5 shadow-[0px_0px_20px_0px_rgba(255,_255,_255,_0.15)]  w-[600px] h-[600px] mx-auto mt-12 rounded-xl flex items-center flex-col">
+        <div className="container  bg-[#131216] px-10 py-5 shadow-[0px_0px_20px_0px_rgba(255,_255,_255,_0.15)]  w-[600px] h-[600px] mx-auto  rounded-xl flex items-center flex-col">
           <h1 className="text-3xl mx-auto mb-4 ">
             Manage your todos at one place
           </h1>
           {/* input todos */}
-          <p className="mr-auto">Add Your Todo</p>
+          <p className="mr-auto font-medium">Add Your Todo</p>
           <div className="inp  w-full my-2.5 gap-2 flex">
             <input
               type="text"
@@ -136,10 +126,10 @@ function App() {
           </div>
 
           {/* show todos */}
-
+        <p className="mr-auto mb-2 font-medium">Your Todos</p>
           <div className="todolist  text-white w-full overflow-y-auto overflow-x-hidden">
             {todos.length === 0 && (
-              <div className="text-zinc-300">No tasks to display</div>
+              <div className="text-zinc-400 text-sm">No tasks to display</div>
             )}
             {todos.map((item) => {
               return (
