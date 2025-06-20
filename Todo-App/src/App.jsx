@@ -2,8 +2,10 @@ import { useState, useEffect } from "react";
 import "./App.css";
 import Nav from "./Component/Nav";
 import { v4 as uuidv4 } from "uuid";
-// import { FaEdit } from "react-icons/fa";
-// import { AiFillDelete } from "react-icons/ai";
+
+import { BiSolidEdit } from "react-icons/bi";
+import { MdDeleteOutline } from "react-icons/md";
+
 
 // Color combinations:
 // #061411 dark grn
@@ -160,14 +162,14 @@ function App() {
                       </div>
                     </div>
 
-                    <div className="buttons h-full flex gap-2 text-sm font-medium">
+                    <div className="buttons h-full flex gap-2 text-sm font-medium items-baseline">
                       <button
                         onClick={(e) => {
                           handleEdit(e, item.id);
                         }}
                         className="bg-[#313035] py-1.5 px-4 rounded-xl hover:scale-105 hover:bg-[#2D2C30] transition-all ease"
                       >
-                        Edit
+                        <BiSolidEdit />
                       </button>
                       <button
                         onClick={(e) => {
@@ -175,7 +177,7 @@ function App() {
                         }}
                         className="bg-[#313035] text-red-500 py-1.5 px-4 rounded-xl hover:scale-105 hover:bg-[#2D2C30] transition-all ease"
                       >
-                        Delete
+                        <MdDeleteOutline />
                       </button>
                     </div>
                   </div>
