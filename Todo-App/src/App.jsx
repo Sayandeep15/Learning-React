@@ -112,7 +112,7 @@ function App() {
               className="bg-white rounded-3xl w-[80%] text-black border-none p-2"
             />
             <button
-              onClick={handleAdd}
+              onClick={handleAdd} disabled={todo.length<=2}
               className="bg-[#313035] py-2 px-4 rounded-xl hover:scale-105 hover:bg-[#2D2C30] transition-all ease"
             >
               Add
@@ -120,7 +120,7 @@ function App() {
           </div>
 
           {/* SHOW FINISHED CHECKBOX */}
-          <div className=" w-full flex items-center">
+          <div className=" w-full flex items-center mb-4 border-b">
             <input
               className="my-4  "
               id="show"
@@ -135,7 +135,7 @@ function App() {
 
           {/* show todos */}
 
-          <div className="todolist  text-white w-full">
+          <div className="todolist  text-white w-full overflow-y-auto overflow-x-hidden">
             {todos.length === 0 && (
               <div className="text-zinc-300">No tasks to display</div>
             )}
@@ -147,16 +147,20 @@ function App() {
                     className="todo flex items-center w-full justify-between mb-2"
                   >
                     {/* CHECK BOX */}
-                    <input
-                      type="checkbox"
-                      name={item.id}
-                      onChange={handleCheck}
-                      checked={item.isCompleted}
-                    />
-                    <p className={item.isCompleted ? "line-through" : ""}>
-                      {item.todo}
-                    </p>
-                    <div className="flex gap-2">
+                    <div className="flex w-full gap-2 items-baseline wrap-anywhere mr-2 ">
+                      <input
+                        type="checkbox"
+                        name={item.id}
+                        onChange={handleCheck}
+                        checked={item.isCompleted}
+                        
+                      />
+                      <div className={item.isCompleted ? "line-through text-sm h-fit" : "text-sm h-fit"}>
+                        {item.todo}
+                      </div>
+                    </div>
+
+                    <div className="buttons h-full flex gap-2 text-sm font-medium">
                       <button
                         onClick={(e) => {
                           handleEdit(e, item.id);
@@ -169,7 +173,7 @@ function App() {
                         onClick={(e) => {
                           handleDlt(e, item.id);
                         }}
-                        className="bg-[#313035] py-1.5 px-4 rounded-xl hover:scale-105 hover:bg-[#2D2C30] transition-all ease"
+                        className="bg-[#313035] text-red-500 py-1.5 px-4 rounded-xl hover:scale-105 hover:bg-[#2D2C30] transition-all ease"
                       >
                         Delete
                       </button>
