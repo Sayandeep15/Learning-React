@@ -6,7 +6,6 @@ import { v4 as uuidv4 } from "uuid";
 import { BiSolidEdit } from "react-icons/bi";
 import { MdDeleteOutline } from "react-icons/md";
 
-
 // Color combinations:
 // #061411 dark grn
 // #073024 mid grn
@@ -85,11 +84,8 @@ function App() {
 
   return (
     <>
-     <Nav />
-      <div
-        className="w-full mt-12 mb-12 text-white">
-       
-
+      <Nav />
+      <div className="w-full mt-12 mb-12 text-white">
         <div className="container  bg-[#131216] px-10 py-5 shadow-[0px_0px_20px_0px_rgba(255,_255,_255,_0.15)]  w-[600px] h-[600px] mx-auto  rounded-xl flex items-center flex-col">
           <h1 className="text-3xl mx-auto mb-4 ">
             Manage your todos at one place
@@ -104,7 +100,8 @@ function App() {
               className="bg-white rounded-3xl w-[80%] text-black border-none p-2"
             />
             <button
-              onClick={handleAdd} disabled={todo.length<=2}
+              onClick={handleAdd}
+              disabled={todo.length <= 2}
               className="bg-[#313035] py-2 px-4 rounded-xl hover:scale-105 hover:bg-[#2D2C30] transition-all ease"
             >
               Add
@@ -126,7 +123,7 @@ function App() {
           </div>
 
           {/* show todos */}
-        <p className="mr-auto mb-2 font-medium">Your Todos</p>
+          <p className="mr-auto mb-2 font-medium">Your Todos</p>
           <div className="todolist  text-white w-full overflow-y-auto overflow-x-hidden">
             {todos.length === 0 && (
               <div className="text-zinc-400 text-sm">No tasks to display</div>
@@ -145,9 +142,14 @@ function App() {
                         name={item.id}
                         onChange={handleCheck}
                         checked={item.isCompleted}
-                        
                       />
-                      <div className={item.isCompleted ? "line-through text-sm h-fit" : "text-sm h-fit"}>
+                      <div
+                        className={
+                          item.isCompleted
+                            ? "line-through text-sm h-fit"
+                            : "text-sm h-fit"
+                        }
+                      >
                         {item.todo}
                       </div>
                     </div>
