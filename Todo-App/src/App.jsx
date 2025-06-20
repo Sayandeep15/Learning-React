@@ -133,7 +133,7 @@ function App() {
                 (showFinished || !item.isCompleted) && (
                   <div
                     key={item.id}
-                    className="todo flex items-center w-full justify-between mb-2"
+                    className="todo flex items-center w-full justify-between mb-2 bg-[#17161A] p-1.5 rounded-md"
                   >
                     {/* CHECK BOX */}
                     <div className="flex w-full gap-2 items-baseline wrap-anywhere mr-2 ">
